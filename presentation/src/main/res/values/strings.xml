@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">SyharnicaCleanArch</string>
+
+    <!-- image description -->
+    <string name="search">Search</string>
+    <string name="sort">Sort</string>
+    <string name="profile">Profile</string>
+    <string name="basket">Basket</string>
+    <string name="edit">Edit</string>
+    <string name="smile">Like</string>
+    <string name="catalog">Catalog</string>
+    <string name="plus">Plus</string>
+    <string name="minus">Minus</string>
+    <string name="arrow_back">Arrow Back</string>
+    <string name="share">Share</string>
+
+    <!-- profile screen -->
+    <string name="profile_title">Profile</string>
+    <string name="full_name">Enter full name</string>
+    <string name="favorite_desserts">Favorite desserts</string>
+    <string name="delivery_profile">Delivery</string>
+    <string name="my_orders_profile">My favorites</string>
+    <string name="our_bakeries_profile">Our bakeries</string>
+    <string name="support_profile">Support</string>
+
+
+    <!-- profile screen examples -->
+    <string name="full_name_example">Admin</string>
+    <string name="phone_number_example">+375 11 111 11 11</string>
+    <string name="address_example">Minsk, Admin Street, 1</string>
+    <string name="number_count_example"> </string>
+    <string name="street_example_profile_1">\tInvisible street, 24</string>
+    <!--<string name="street_example_profile_2">Iwon\'ttell street, 121</string>
+    <string name="street_example_profile_3">Invisible avenue, 148/3</string> -->
+    <string name="phone_number_example_profile_1">\t+375 01 234-56-78\n
+        \t+375 11 234-56-78\n
+        \tsuharnica@gmail.by</string>
+    <!--<string name="phone_number_example_profile_2">+375 11 234-56-78</string>
+    <string name="email_example_profile">suharnica@gmail.by</string>-->
+
+    <!-- catalog screen -->
+    <string name="price">Price</string>
+    <string name="all">All</string>
+    <string name="favorite">Favorite</string>
+
+    <!-- basket screen -->
+    <string name="choose">Choose</string>
+    <string name="place_an_order">Place an order</string>
+
+    <!-- detail screen -->
+    <string name="composition">Composition:</string>
+    <string name="nutrition_facts">Nutrition Facts(100g):</string>
+    <string name="add_to_basket">Add to Basket</string>
+
+    <!-- LogIn or SignUp screen -->
+    <string name="syharnica">Syharnica</string>
+    <string name="login">Login</string>
+    <string name="log_in">lOG IN</string>
+    <string name="signup">Sign Up</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="user_name">Username</string>
+    <string name="password">Password</string>
+    <string name="new_to_syharnica">New to Suharnica? SIGN UP</string>
+    <string name="already_in_syharnica">Already in Suharnica? LOG IN</string>
+
+    <!-- Making an Order -->
+    <string name="making_an_order_title">Making an order</string>
+    <string name="mao_name">First Name</string>
+    <string name="mao_second_name">Second Name</string>
+    <string name="mao_mobile_number">Mobile number</string>
+    <string name="mao_method_of_issue">Method of issue</string>
+    <string name="mao_delivery_by_courier">Delivery by courier</string>
+    <string name="mao_pick_up">Pick up</string>
+    <string name="mao_some_comments">Comment on the order</string>
+    <string name="mao_address_pick_up">\tMinsk, Gikalo 9</string>
+
+</resources>
