@@ -6,7 +6,7 @@ import dev.rodkin.domain.useCases.CatalogUseCases
 import dev.rodkin.domain.utils.ResponseCatalog
 import javax.inject.Inject
 
-class CatalogUseCasesImpl @Inject constructor(
+class CatalogUseCasesImpl constructor(
     private val catalogRepository: CatalogRepository
 ) : CatalogUseCases {
 

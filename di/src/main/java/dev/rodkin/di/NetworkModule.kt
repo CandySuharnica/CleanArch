@@ -4,7 +4,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.rodkin.data.network.CatalogRemoveService
 import dev.rodkin.data.utils.Constants
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -39,8 +38,5 @@ class NetworkModule {
     }
 
 
-    @Provides
-    @Singleton
-    fun providesApiService(retrofit: Retrofit): CatalogRemoveService =
-        retrofit.create(CatalogRemoveService::class.java)
+
 }
