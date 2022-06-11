@@ -1,4 +1,4 @@
-package by.candy.suharnica.android.composeUI.common
+package dev.rodkin.syharnicacleanarch.composeUI.common
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
@@ -13,9 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import by.candy.suharnica.MR
-import by.candy.suharnica.android.MainViewModel
-import by.candy.suharnica.android.utils.Icons
+import dev.rodkin.syharnicacleanarch.R
+import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
 
 
 @Composable
@@ -43,7 +42,7 @@ fun SearchBar(
                 ) {
                     Icon(
                         painter = painterResource(id = Icons.Search.image),
-                        contentDescription = stringResource(id = Icons.Search.description.resourceId)
+                        contentDescription = stringResource(id = Icons.Search.description)
                     )
                     BasicTextField(
                         modifier = Modifier
@@ -55,7 +54,7 @@ fun SearchBar(
                             if (text.isEmpty()) {
                                 Text(
                                     modifier = Modifier.alpha(0.5f),
-                                    text = stringResource(id = MR.strings.search.resourceId)
+                                    text = stringResource(id = R.string.search)
                                 )
                             }
                             innerTextField()
