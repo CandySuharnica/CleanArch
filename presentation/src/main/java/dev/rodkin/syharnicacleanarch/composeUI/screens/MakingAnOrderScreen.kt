@@ -1,10 +1,10 @@
-package by.candy.suharnica.android.composeUI
+/*
+package dev.rodkin.syharnicacleanarch.composeUI.screens
 
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Environment
 import android.util.Log
-import android.util.TimeUtils
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import by.candy.suharnica.MR
 import by.candy.suharnica.android.MainViewModel
-import by.candy.suharnica.android.composeUI.common.RedButton
+import dev.rodkin.syharnicacleanarch.composeUI.common.RedButton
 import by.candy.suharnica.android.utils.Colors
 import by.candy.suharnica.android.utils.Icons
 import com.itextpdf.text.Document
@@ -236,4 +236,4 @@ fun MakingAnOrderScreen(viewModel: MainViewModel) {
         }
 
     }
-}
+}*/

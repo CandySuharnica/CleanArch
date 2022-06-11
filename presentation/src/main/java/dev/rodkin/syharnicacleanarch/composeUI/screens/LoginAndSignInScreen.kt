@@ -1,4 +1,5 @@
-package by.candy.suharnica.android.composeUI
+/*
+package dev.rodkin.syharnicacleanarch.composeUI.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -19,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import by.candy.suharnica.MR
 import by.candy.suharnica.android.MainViewModel
-import by.candy.suharnica.android.utils.Colors
 import by.candy.suharnica.android.utils.Icons
 
 
@@ -195,3 +195,4 @@ fun signUp(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Boo
         )
     }
 }
+*/

@@ -1,4 +1,5 @@
-package by.candy.suharnica.android.composeUI
+/*
+package dev.rodkin.syharnicacleanarch.composeUI.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -45,10 +46,12 @@ fun AdminScreen(viewModel: MainViewModel) {
                 scrollState,
                 true
             )
-            /*.scrollable(
+            */
+/*.scrollable(
                 state = scrollState,
                 orientation = Orientation.Vertical
-            )*/
+            )*//*
+
             .padding(start = 8.dp)
     ) {
 
@@ -225,3 +228,4 @@ fun AdminScreen(viewModel: MainViewModel) {
         Spacer(modifier = Modifier.height(80.dp))
     }
 }
+*/

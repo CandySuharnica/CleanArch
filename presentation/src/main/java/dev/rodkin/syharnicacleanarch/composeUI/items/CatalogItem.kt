@@ -1,10 +1,11 @@
-package by.candy.suharnica.android.composeUI.items
+package dev.rodkin.syharnicacleanarch.composeUI.items
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,11 +19,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import by.candy.suharnica.android.R
-import by.candy.suharnica.android.utils.Colors
-import by.candy.suharnica.android.utils.Icons
-import by.candy.suharnica.entity.CatalogItem
 import coil.compose.SubcomposeAsyncImage
+import dev.rodkin.domain.entities.CatalogItem
+import dev.rodkin.syharnicacleanarch.R
+import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
 
 
 @Composable
@@ -79,7 +79,7 @@ fun CatalogItem(
                 Text(
                     modifier = Modifier
                         .background(
-                            if (item.price != item.priceSale) Colors.RedSale.color
+                            if (item.price != item.priceSale) MaterialTheme.colorScheme.secondary
                             else Color.White
                         )
                         .padding(horizontal = 2.dp),
@@ -132,13 +132,13 @@ fun CatalogItem(
             ) {
                 Icon(
                     painter = painterResource(id = Icons.Smile.image),
-                    contentDescription = stringResource(id = Icons.Smile.description.resourceId),
-                    tint = if (liked) Colors.RedButton.color else Color.Gray
+                    contentDescription = stringResource(id = Icons.Smile.description),
+                    tint = if (liked) MaterialTheme.colorScheme.primary else Color.Gray
                 )
                 Text(
                     modifier = Modifier.padding(start = 4.dp),
                     text = item.likes.toString(),
-                    color = if (liked) Colors.RedButton.color else Color.Gray
+                    color = if (liked) MaterialTheme.colorScheme.primary else Color.Gray
                 )
             }
         if (onClickAddItem != null)
@@ -150,7 +150,7 @@ fun CatalogItem(
             ) {
                 Image(
                     painter = painterResource(id = Icons.Basket.image),
-                    contentDescription = stringResource(id = Icons.Basket.description.resourceId)
+                    contentDescription = stringResource(id = Icons.Basket.description)
                 )
                 Text(
                     modifier = Modifier

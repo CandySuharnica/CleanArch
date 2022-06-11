@@ -1,11 +1,10 @@
-package by.candy.suharnica.android.composeUI
+/*
+package dev.rodkin.syharnicacleanarch.composeUI.screens
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -16,14 +15,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import by.candy.suharnica.MR
 import by.candy.suharnica.android.MainViewModel
-import by.candy.suharnica.android.composeUI.common.RedButton
-import by.candy.suharnica.android.utils.Colors
+import dev.rodkin.syharnicacleanarch.composeUI.common.RedButton
 import by.candy.suharnica.android.utils.Icons
 import by.candy.suharnica.cache.databases.OnBasketMode
 import coil.compose.SubcomposeAsyncImage
@@ -105,7 +102,8 @@ fun DetailScreen(viewModel: MainViewModel, navController: NavController, itemId:
                             color = Color.Gray
                         )
                     }
-                    /*Row(
+                    */
+/*Row(
                         modifier = Modifier.align(Alignment.BottomEnd),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -125,7 +123,8 @@ fun DetailScreen(viewModel: MainViewModel, navController: NavController, itemId:
                                 id = Icons.Share.description.resourceId
                             )
                         )
-                    }*/
+                    }*//*
+
                 }
                 Divider(
                     modifier = Modifier.padding(12.dp),
@@ -201,3 +200,4 @@ fun DetailScreen(viewModel: MainViewModel, navController: NavController, itemId:
 }
 
 
+*/
