@@ -5,16 +5,15 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.rodkin.domain.entities.CatalogItem
 import dev.rodkin.domain.useCases.CatalogUseCases
-import kotlinx.coroutines.CoroutineScope
+import dev.rodkin.domain.useCases.useCasesImpl.CatalogUseCasesImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Named
 
 @HiltViewModel
 class CatalogViewModel @Inject constructor(
-
+    catalogUseCases: CatalogUseCases
 ) : ViewModel() {
 
     private val _catalogList = MutableStateFlow(emptyList<CatalogItem>())
