@@ -6,15 +6,15 @@ import dev.rodkin.domain.useCases.CatalogUseCases
 import dev.rodkin.domain.utils.ResponseCatalog
 import javax.inject.Inject
 
-class CatalogUseCasesImpl constructor(
+class CatalogUseCasesImpl @Inject constructor(
     private val catalogRepository: CatalogRepository
 ) : CatalogUseCases {
 
-    override suspend fun getCatalogList(): List<CatalogItem> {
+    override suspend fun getCatalogList() {
         val response = catalogRepository.getCatalogListFromRemove()
 
         when (response) {
-            is ResponseCatalog.Success -> return response.data
+            is ResponseCatalog.Success -> response.data
             is ResponseCatalog.Error -> TODO()
         }
     }
