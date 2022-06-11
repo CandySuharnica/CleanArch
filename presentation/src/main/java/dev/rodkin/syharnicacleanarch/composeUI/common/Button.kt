@@ -1,10 +1,11 @@
-package by.candy.suharnica.android.composeUI.common
+package dev.rodkin.syharnicacleanarch.composeUI.common
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,8 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import by.candy.suharnica.android.utils.Colors
-import by.candy.suharnica.android.utils.Icons
+import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -26,7 +26,7 @@ fun RedButton(
     onClickIconRemove: (() -> Unit)? = null,
     onClickButton: (() -> Unit)? = null,
     text: String? = null,
-    backgroundColor: Color = Colors.RedButton.color,
+    backgroundColor: Color = MaterialTheme.colorScheme.primary,
     count: Int? = null,
     textAlign: Alignment = Alignment.CenterStart,
     icon: Icons? = null,
@@ -120,13 +120,13 @@ fun RedButtonInsideImpl(
             if (icon != null)
                 Icon(
                     painter = painterResource(id = icon.image),
-                    contentDescription = stringResource(id = icon.description.resourceId)
+                    contentDescription = stringResource(id = icon.description)
                 )
             if (onClickIconRemove != null)
                 IconButton(onClick = onClickIconRemove) {
                     Image(
                         painter = painterResource(id = Icons.Minus.image),
-                        contentDescription = stringResource(id = Icons.Minus.description.resourceId)
+                        contentDescription = stringResource(id = Icons.Minus.description)
                     )
                 }
             if (count != null)
@@ -136,13 +136,13 @@ fun RedButtonInsideImpl(
                     text = "$count",
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Medium,
-                    color = Colors.RedButton.color
+                    color = MaterialTheme.colorScheme.primary
                 )
             if (onClickIconAdd != null)
                 IconButton(onClick = onClickIconAdd) {
                     Image(
                         painter = painterResource(id = Icons.BigPlus.image),
-                        contentDescription = stringResource(id = Icons.BigPlus.description.resourceId)
+                        contentDescription = stringResource(id = Icons.BigPlus.description)
                     )
                 }
         }

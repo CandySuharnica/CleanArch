@@ -1,3 +1,4 @@
+/*
 package dev.rodkin.syharnicacleanarch.composeUI.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -21,11 +22,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import by.candy.suharnica.MR
-import by.candy.suharnica.android.composeUI.common.PopupList
-import by.candy.suharnica.android.composeUI.common.RedButton
-import by.candy.suharnica.android.composeUI.items.CatalogItem
-import by.candy.suharnica.android.utils.Icons
+import dev.rodkin.syharnicacleanarch.R
+import dev.rodkin.syharnicacleanarch.composeUI.common.PopupList
+import dev.rodkin.syharnicacleanarch.composeUI.common.RedButton
+import dev.rodkin.syharnicacleanarch.composeUI.items.CatalogItem
+import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
 import dev.rodkin.syharnicacleanarch.presenters.ProfileViewModel
 
 
@@ -38,10 +39,13 @@ fun Profile(viewModel: ProfileViewModel) {
     val listOfLikes =
         viewModel.listOfLikes.collectAsState(initial = listOf()).value.firstNotNullOfOrNull { it }?.likes
             ?: emptyList()
-    val user = viewModel.userFlow.collectAsState(initial = listOf()).value.singleOrNull { it.name != null }?.name ?: ""
+    val user =
+        viewModel.userFlow.collectAsState(initial = listOf()).value.singleOrNull { it.name != null }?.name
+            ?: ""
     for (item in orderItems) {
         orderItemsNames.add(item.label)
     }
+
     Column(
         Modifier
             .scrollable(rememberScrollState(), Orientation.Vertical)
@@ -51,7 +55,7 @@ fun Profile(viewModel: ProfileViewModel) {
         TopCard(user)
         Spacer(modifier = Modifier.height(20.dp))
         PopupList(
-            label = stringResource(id = MR.strings.my_orders_profile.resourceId),
+            label = stringResource(id = R.string.my_orders_profile),
             content = {
                 LazyVerticalGrid(
                     cells = GridCells.Fixed(2)
@@ -69,17 +73,17 @@ fun Profile(viewModel: ProfileViewModel) {
         )
         Spacer(modifier = Modifier.height(2.dp))
         PopupList(
-            label = stringResource(id = MR.strings.our_bakeries_profile.resourceId),
+            label = stringResource(id = R.string.our_bakeries_profile),
             content = {
-                Text(text = stringResource(id = MR.strings.street_example_profile_1.resourceId))
+                Text(text = stringResource(id = R.string.street_example_profile_1))
             }
 
         )
         Spacer(modifier = Modifier.height(2.dp))
         PopupList(
-            label = stringResource(id = MR.strings.support_profile.resourceId),
+            label = stringResource(id = R.string.support_profile),
             content = {
-                Text(text = stringResource(id = MR.strings.phone_number_example_profile_1.resourceId))
+                Text(text = stringResource(id = R.string.phone_number_example_profile_1))
             }
         )
         Spacer(modifier = Modifier.height(250.dp))
@@ -87,7 +91,8 @@ fun Profile(viewModel: ProfileViewModel) {
             text = "Выйти",
             onClickButton = {
                 if (user != "")
-                viewModel.removeUser(user)
+                    viewModel.removeUser(user)
+
             }
         )
 
@@ -98,18 +103,19 @@ fun Profile(viewModel: ProfileViewModel) {
 @Composable
 fun TopBar() {
     Box(modifier = Modifier.fillMaxWidth()) {
-        /*IconButton(
+        IconButton(
             modifier = Modifier.align(Alignment.CenterStart),
-            onClick = {  }) {
+            onClick = { }) {
             Image(
                 painter = painterResource(id = Icons.ArrowBack.image),
                 contentDescription = stringResource(id = Icons.ArrowBack.description.resourceId),
 
                 )
-        }*/
+        }
+
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = stringResource(id = MR.strings.profile_title.resourceId),
+            text = stringResource(id = R.string.profile_title),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
         )
@@ -121,7 +127,7 @@ fun TopBar() {
 }
 
 @Composable
-fun TopCard(user:String) {
+fun TopCard(user: String = "") {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -151,7 +157,7 @@ fun TopCard(user:String) {
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 20.sp
                 )
-                /*IconButton(
+                IconButton(
                     onClick = { },
                     modifier = Modifier
                         .size(31.dp)
@@ -160,15 +166,16 @@ fun TopCard(user:String) {
                         painter = painterResource(Icons.Edit.image),
                         contentDescription = "Edit icon"
                     )
-                }*/
+                }
+
             }
             Text(
-                text = stringResource(id = MR.strings.phone_number_example.resourceId),
+                text = stringResource(id = R.string.phone_number_example),
                 fontWeight = FontWeight.Normal,
                 fontSize = 14.sp
             )
             Text(
-                text = stringResource(id = MR.strings.address_example.resourceId),
+                text = stringResource(id = R.string.address_example),
                 fontWeight = FontWeight.Normal,
                 fontSize = 14.sp
             )
@@ -176,3 +183,4 @@ fun TopCard(user:String) {
         }
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package dev.rodkin.syharnicacleanarch.composeUI.screens
 
 import android.annotation.SuppressLint
@@ -11,19 +12,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import by.candy.suharnica.MR
-import by.candy.suharnica.android.MainViewModel
-import by.candy.suharnica.android.composeUI.common.RedButton
-import by.candy.suharnica.android.composeUI.items.BasketItem
-import by.candy.suharnica.android.utils.Icons
-import by.candy.suharnica.android.utils.NavGraph
-import by.candy.suharnica.cache.databases.OnBasketMode
+import dev.rodkin.syharnicacleanarch.composeUI.common.RedButton
+import dev.rodkin.syharnicacleanarch.composeUI.items.BasketItem
 import dev.rodkin.syharnicacleanarch.presenters.BasketViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -39,27 +34,35 @@ fun BasketScreen(viewModel: BasketViewModel, navController: NavController) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column() {
             Box(modifier = Modifier.fillMaxWidth()) {
-                /*IconButton(
+                */
+/*IconButton(
                     modifier = Modifier.align(Alignment.CenterStart),
-                    onClick = { *//*TODO*//* }) {
+                    onClick = { *//*
+*/
+/*TODO*//*
+*/
+/* }) {
                     Image(
                         painter = painterResource(id = Icons.ArrowBack.image),
                         contentDescription = stringResource(id = Icons.ArrowBack.description.resourceId)
                     )
-                }*/
+                }*//*
+
                 Text(
                     modifier = Modifier.align(Alignment.Center),
                     text = stringResource(id = MR.strings.basket.resourceId),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
-                /*Text(
+                */
+/*Text(
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .align(Alignment.CenterEnd),
                     text = stringResource(id = MR.strings.choose.resourceId),
                     fontSize = 18.sp,
-                )*/
+                )*//*
+
             }
             Divider(
                 thickness = 2.dp,
@@ -109,4 +112,4 @@ fun BasketScreen(viewModel: BasketViewModel, navController: NavController) {
         )
     }
 
-}
+}*/

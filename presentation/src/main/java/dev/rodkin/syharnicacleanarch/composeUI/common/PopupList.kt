@@ -1,4 +1,4 @@
-package by.candy.suharnica.android.composeUI.common
+package dev.rodkin.syharnicacleanarch.composeUI.common
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
@@ -13,8 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import by.candy.suharnica.MR
-import by.candy.suharnica.android.utils.Icons
+import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
 
 @Composable
 fun PopupList(
@@ -33,13 +32,13 @@ fun PopupList(
                 if(!expanded)
                     Icon(
                         painter = painterResource(Icons.Plus.image),
-                        contentDescription = stringResource(id = Icons.Plus.description.resourceId),
+                        contentDescription = stringResource(id = Icons.Plus.description),
                         Modifier.padding(end = 2.dp)
                             .clickable { expanded = !expanded }
                     ) else
                     Icon(
                         painter = painterResource(Icons.SmallMinus.image),
-                        contentDescription = stringResource(id = Icons.SmallMinus.description.resourceId),
+                        contentDescription = stringResource(id = Icons.SmallMinus.description),
                         Modifier.padding(end = 2.dp)
                             .clickable { expanded = !expanded }
                     )
