@@ -11,23 +11,22 @@ import dev.rodkin.domain.repositoryIntefaces.CatalogRepository
 import dev.rodkin.domain.useCases.CatalogUseCases
 import dev.rodkin.domain.useCases.useCasesImpl.CatalogUseCasesImpl
 
-@Module
+/*@Module
 @InstallIn(ViewModelComponent::class)
 class UseCasesModule {
     @Provides
     fun provideCatalogUseCase(catalogRepository: CatalogRepository): CatalogUseCases =
         CatalogUseCasesImpl(catalogRepository)
-}
+}*/
 
 
 
 
-/*
-@Module
+
+/*@Module
 @InstallIn(ViewModelComponent::class)
-abstract class UseCasesModule {
+interface UseCasesModule {
 
-    @Provides
     @Binds
-    abstract fun bindCatalogUseCase(catalogRepositoryImpl: CatalogUseCasesImpl): CatalogUseCases
+    fun bindCatalogUseCase(catalogRepositoryImpl: CatalogUseCasesImpl): CatalogUseCases
 }*/
