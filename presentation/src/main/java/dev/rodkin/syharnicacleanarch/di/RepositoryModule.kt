@@ -1,4 +1,4 @@
-package dev.rodkin.di
+package dev.rodkin.syharnicacleanarch.di
 
 import dagger.Binds
 import dagger.Module
@@ -11,15 +11,9 @@ import dev.rodkin.domain.repositoryIntefaces.CatalogRepository
 @InstallIn(SingletonComponent::class)
 interface RepositoryModule {
 
-
     @Binds
     fun bindCatalogRepository(
         catalogRepositoryImpl: CatalogRepositoryImpl
     ): CatalogRepository
 
-    /*companion object {
-        @Provides
-        @Named("IO")
-        fun provideIODispatcher(): CoroutineDispatcher = Dispatchers.IO
-    }*/
 }

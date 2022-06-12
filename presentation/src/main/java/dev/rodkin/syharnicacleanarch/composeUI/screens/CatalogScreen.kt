@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -12,17 +13,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import dev.rodkin.syharnicacleanarch.composeUI.common.SearchBar
+import dev.rodkin.syharnicacleanarch.composeUI.common.SortBar
 import dev.rodkin.syharnicacleanarch.composeUI.items.CatalogItem
 import dev.rodkin.syharnicacleanarch.presenters.CatalogViewModel
 
 
 @Composable
 fun CatalogScreen(viewModel: CatalogViewModel, navController: NavController) {
+
+    LaunchedEffect(key1 = Unit){
+        viewModel.getCatalogList()
+    }
     /*val sortFlow = viewModel.sortFlow.collectAsState().value
     val initialList = listOf("Все", "Любимое")
-    val sortTypes = viewModel.getTypes.collectAsState(initial = listOf()).value
+
     val finalListTypes = initialList + sortTypes
     val searchFlow = viewModel.searchFlow.collectAsState().value*/
+    val sortTypes = viewModel.catalogTypes.collectAsState(initial = listOf()).value
     val catalogItems = viewModel.catalogList
         .collectAsState(initial = listOf()).value
     /*val listOfLikes =
@@ -34,12 +41,12 @@ fun CatalogScreen(viewModel: CatalogViewModel, navController: NavController) {
         SearchBar(text = "searchFlow") {
             //viewModel.searchFlow.value = it
         }
-        /*SortBar(
-            content = finalListTypes,
-            sortMode = sortFlow,
+        SortBar(
+            content = sortTypes,
+            sortMode = "Все",
         ) {
-            viewModel.sortFlow.value = it
-        }*/
+           // viewModel.sortFlow.value = it
+        }
         Box() {
             LazyVerticalGrid(
                 modifier = Modifier.padding(bottom = 59.dp),

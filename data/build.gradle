@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    //module
+    implementation project(path: ':domain')
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
@@ -43,7 +45,7 @@ dependencies {
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
 
     //hilt
     implementation "com.google.dagger:hilt-android:2.39.1"
@@ -52,6 +54,9 @@ dependencies {
     //coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
 
-
-    implementation project(path: ':domain')
+// Moshi
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.13.0"
+    implementation "com.squareup.moshi:moshi:1.13.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.13.0"
+    implementation "com.squareup.moshi:moshi-adapters:1.13.0"
 }

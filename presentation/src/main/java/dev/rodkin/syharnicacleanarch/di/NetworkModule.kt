@@ -1,13 +1,15 @@
-package dev.rodkin.di
+package dev.rodkin.syharnicacleanarch.di
 
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.rodkin.data.utils.Constants
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -22,10 +24,10 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun retrofitProvider(@Named("baseUrl") baseUrl: String, okHttpClient: OkHttpClient): Retrofit =
+    fun retrofitProvider(@Named("baseUrl") baseUrl: String, okHttpClient: OkHttpClient/*, moshi: Moshi*/): Retrofit =
         Retrofit.Builder()
+            .addConverterFactory(MoshiConverterFactory.create())
             .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
 
@@ -37,6 +39,9 @@ class NetworkModule {
             .build()
     }
 
-
+    @Provides
+    @Singleton
+    @Named("IO")
+    fun provideDispatcher() = Dispatchers.IO
 
 }
