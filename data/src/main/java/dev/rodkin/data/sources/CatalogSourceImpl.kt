@@ -1,7 +1,7 @@
 package dev.rodkin.data.sources
 
 import dev.rodkin.data.network.CatalogRemoteService
-import dev.rodkin.domain.entities.CatalogItem
+import dev.rodkin.domain.entities.ListCatalogItems
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
@@ -15,7 +15,7 @@ class CatalogSourceImpl @Inject constructor(
 
     private val catalogApi = config.create(CatalogRemoteService::class.java)
 
-    override suspend fun getCatalogList(): Response<List<CatalogItem>> {
+    override suspend fun getCatalogList(): Response<ListCatalogItems> {
         return catalogApi.getCatalogList().awaitResponse()
     }
 

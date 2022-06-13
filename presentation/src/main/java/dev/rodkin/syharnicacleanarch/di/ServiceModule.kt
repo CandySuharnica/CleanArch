@@ -1,4 +1,4 @@
-package dev.rodkin.di
+package dev.rodkin.syharnicacleanarch.di
 
 import dagger.Binds
 import dagger.Module
