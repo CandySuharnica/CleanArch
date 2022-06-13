@@ -19,7 +19,6 @@ import dev.rodkin.syharnicacleanarch.presenters.DetailCatalogViewModel
 fun NavigationGraph() {
 
     val navController = rememberNavController()
-    val scope = rememberCoroutineScope()
 
     // val user = viewModel.userFlow.collectAsState(null).value?.singleOrNull { it.name != null }
     Scaffold(
