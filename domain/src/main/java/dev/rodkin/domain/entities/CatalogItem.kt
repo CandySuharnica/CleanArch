@@ -1,5 +1,7 @@
 package dev.rodkin.domain.entities
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -7,12 +9,13 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class ListCatalogItems(
     @Json(name = "catalog")
-    val data:List<CatalogItem>
+    val data: List<CatalogItem>
 )
 
+@Entity
 @JsonClass(generateAdapter = true)
 data class CatalogItem(
-    val id: Long = 0,
+    @PrimaryKey val id: Long = 0,
     @Json(name = "name")
     val label: String = "",
     val type: String = "", //for filter in the groups

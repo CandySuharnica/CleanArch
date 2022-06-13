@@ -12,16 +12,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import dev.rodkin.domain.useCases.useCasesImpl.SortMode
 import dev.rodkin.syharnicacleanarch.composeUI.common.SearchBar
 import dev.rodkin.syharnicacleanarch.composeUI.common.SortBar
 import dev.rodkin.syharnicacleanarch.composeUI.items.CatalogItem
 import dev.rodkin.syharnicacleanarch.presenters.CatalogViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 
 
 @Composable
 fun CatalogScreen(viewModel: CatalogViewModel, navController: NavController) {
 
-    LaunchedEffect(key1 = Unit){
+    LaunchedEffect(key1 = Unit) {
         viewModel.getCatalogList()
     }
     /*val sortFlow = viewModel.sortFlow.collectAsState().value
@@ -32,20 +34,26 @@ fun CatalogScreen(viewModel: CatalogViewModel, navController: NavController) {
     val sortTypes = viewModel.catalogTypes.collectAsState(initial = listOf()).value
     val catalogItems = viewModel.catalogList
         .collectAsState(initial = listOf()).value
+
+    val flowSearch = viewModel.flowSearch.collectAsState()
+    val flowType = viewModel.flowType.collectAsState()
+    val flowSearchMode = viewModel.flowSearchMode.collectAsState()
     /*val listOfLikes =
         viewModel.listOfLikes.collectAsState(initial = listOf()).value.firstNotNullOfOrNull { it }?.likes
             ?: emptyList()*/
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        SearchBar(text = "searchFlow") {
-            //viewModel.searchFlow.value = it
+        SearchBar(text = flowSearch.value) {
+            viewModel.flowSearch.value = it
+            viewModel.sortCatalogList()
         }
         SortBar(
             content = sortTypes,
-            sortMode = "Все",
+            sortMode = flowType.value,
         ) {
-           // viewModel.sortFlow.value = it
+            viewModel.flowType.value = it
+            viewModel.sortCatalogList()
         }
         Box() {
             LazyVerticalGrid(

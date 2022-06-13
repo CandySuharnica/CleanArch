@@ -5,8 +5,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.rodkin.domain.entities.CatalogItem
 import dev.rodkin.domain.useCases.CatalogUseCases
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import dev.rodkin.domain.useCases.useCasesImpl.InitialTypes
+import dev.rodkin.domain.useCases.useCasesImpl.SortMode
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,16 +22,31 @@ class CatalogViewModel @Inject constructor(
     private val _catalogTypes = MutableStateFlow(emptyList<String>())
     val catalogTypes: StateFlow<List<String>> = _catalogTypes
 
-
-
+    val flowSearch = MutableStateFlow("")
+    val flowType = MutableStateFlow(InitialTypes.ALL.type)
+    val flowSearchMode = MutableStateFlow(SortMode.NONE)
 
     fun getCatalogList() {
         viewModelScope.launch {
+            //init catalog list
             useCase.getCatalogList()
-            val catalogList = useCase.catalogList.value
-            _catalogList.emit(catalogList)
+            sortCatalogList()
+
             val catalogTypes = useCase.catalogTypes.value
             _catalogTypes.emit(catalogTypes)
+            useCase.catalogList.collect{
+                _catalogList.emit(it)
+            }
+        }
+    }
+
+    fun sortCatalogList(){
+        viewModelScope.launch {
+            useCase.sortCatalogList(
+                searchSort = flowSearch.value,
+                typeSort = flowType.value,
+                sortMode = flowSearchMode.value,
+            )
         }
     }
 

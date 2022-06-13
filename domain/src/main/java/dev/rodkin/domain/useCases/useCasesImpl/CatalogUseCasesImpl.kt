@@ -13,7 +13,8 @@ class CatalogUseCasesImpl @Inject constructor(
 ) : CatalogUseCases {
 
     private val _catalogList = MutableStateFlow(emptyList<CatalogItem>())
-    override val catalogList: StateFlow<List<CatalogItem>> = _catalogList
+    private val _sortedCatalogList = MutableStateFlow(emptyList<CatalogItem>())
+    override val catalogList: StateFlow<List<CatalogItem>> = _sortedCatalogList
 
     private val _catalogTypes = MutableStateFlow(emptyList<String>())
     override val catalogTypes: StateFlow<List<String>> = _catalogTypes
@@ -42,11 +43,39 @@ class CatalogUseCasesImpl @Inject constructor(
         _catalogTypes.emit(initialTypes + listTypes)
     }
 
-    companion object{
-        val initialTypes = listOf(InitialTypes.ALL.name, InitialTypes.FAVORITE.name)
+    override suspend fun sortCatalogList(
+        searchSort: String,
+        typeSort: String,
+        sortMode: SortMode
+    ) {
+        val sortedList =
+            _catalogList.value.filter { searchFilter ->
+                if (searchSort != "") searchFilter.label.contains(searchSort, ignoreCase = true)
+                else true
+            }.filter { typeFilter ->
+                when (typeSort) {
+                    InitialTypes.ALL.type -> true
+                    InitialTypes.FAVORITE.name -> true
+                    else -> typeFilter.type == typeSort
+                }
+            }.filter { sortModeFilter ->
+                when (sortMode) {
+                    SortMode.NONE -> true
+                }
+            }
+
+        _sortedCatalogList.value = sortedList
+    }
+
+    companion object {
+        val initialTypes = listOf(InitialTypes.ALL.type, InitialTypes.FAVORITE.type)
     }
 }
 
-enum class InitialTypes(name: String) {
-    ALL("Все"),FAVORITE("Любимые")
+enum class InitialTypes(val type: String) {
+    ALL("Все"), FAVORITE("Любимые")
+}
+
+enum class SortMode {
+    NONE
 }
