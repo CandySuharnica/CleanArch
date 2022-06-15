@@ -2,17 +2,19 @@ package dev.rodkin.data.localDB
 
 import androidx.room.*
 import dev.rodkin.domain.entities.BasketItem
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BasketDao {
-    @Query("SELECT * FROM basketItem")
-    fun getAll(): List<BasketItem>
 
+    @Query("SELECT * FROM basketItem")
+    fun getBasketList(): Flow<List<BasketItem>>
+/*
     @Query("DELETE FROM basketItem")
     fun deleteTable()
 
     @Query("SELECT SUM(count) FROM basketItem")
-    fun getCount() : Int
+    fun getCount() : Int*/
 
    /* @Query("SELECT SUM(price_sum) FROM basketItem")
     fun getAmountPrice() : Double
@@ -33,5 +35,5 @@ interface BasketDao {
     fun update(item: BasketItem)
 
     @Delete
-    fun delete(id: Long)
+    fun delete(item: BasketItem)
 }

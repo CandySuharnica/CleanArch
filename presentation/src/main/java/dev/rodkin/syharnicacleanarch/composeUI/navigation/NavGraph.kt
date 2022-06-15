@@ -2,18 +2,18 @@ package dev.rodkin.syharnicacleanarch.composeUI.navigation
 
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import dev.rodkin.syharnicacleanarch.composeUI.screens.BasketScreen
 import dev.rodkin.syharnicacleanarch.composeUI.screens.CatalogScreen
+import dev.rodkin.syharnicacleanarch.composeUI.screens.DetailScreen
 import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
 import dev.rodkin.syharnicacleanarch.presenters.BasketViewModel
 import dev.rodkin.syharnicacleanarch.presenters.CatalogViewModel
-import dev.rodkin.syharnicacleanarch.presenters.DetailCatalogViewModel
 
 @Composable
 fun NavigationGraph() {
@@ -30,11 +30,16 @@ fun NavigationGraph() {
 
             composable(NavGraph.Catalog.route) {
                 val catalogViewModel = hiltViewModel<CatalogViewModel>()
-                CatalogScreen(viewModel = catalogViewModel, navController)
+                val basketViewModel = hiltViewModel<BasketViewModel>()
+                CatalogScreen(
+                    catalogViewModel = catalogViewModel,
+                    basketViewModel = basketViewModel,
+                    navController
+                )
             }
             composable(NavGraph.Basket.route) {
                 val basketViewModel = hiltViewModel<BasketViewModel>()
-                //BasketScreen(viewModel = basketViewModel, navController)
+                BasketScreen(viewModel = basketViewModel, navController)
             }
             /*composable(NavGraph.AdminScreen.route) {
                 AdminScreen(viewModel)
@@ -54,12 +59,14 @@ fun NavigationGraph() {
                 "${NavGraph.DetailScreen.route}/itemId={itemId}",
                 arguments = listOf(navArgument("itemId") { type = NavType.LongType })
             ) { backStackEntry ->
-                val detailCatalogViewModel = hiltViewModel<DetailCatalogViewModel>()
-                /*DetailScreen(
-                    viewModel = detailCatalogViewModel,
+                val basketViewModel = hiltViewModel<BasketViewModel>()
+                val catalogViewModel = hiltViewModel<CatalogViewModel>()
+                DetailScreen(
+                    catalogViewModel = catalogViewModel,
+                    basketViewModel = basketViewModel,
                     navController,
-                    backStackEntry.arguments?.getLong("itemId") ?: 0
-                )*/
+                    backStackEntry.arguments?.getLong("itemId") ?: -1
+                )
             }
         }
     }

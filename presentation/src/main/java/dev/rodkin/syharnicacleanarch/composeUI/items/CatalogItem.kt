@@ -31,9 +31,8 @@ fun CatalogItem(
     count: Int = 0,
     liked: Boolean? = null,
     onClickItem: (() -> Unit)? = null,
-    onClickAddItem: (() -> Unit)? = null,
+    onClickAddItem: ((CatalogItem) -> Unit)? = null,
     onClickLike: (() -> Unit)? = null,
-    onRemoveItem: (() -> Unit)? = null
 ) {
     Box(modifier = Modifier
         .drawBehind {
@@ -71,10 +70,6 @@ fun CatalogItem(
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
-            if (onRemoveItem != null)
-                IconButton(onClick = onRemoveItem) {
-                    Icon(painter = painterResource(id = R.drawable.ic_trash), contentDescription = null)
-                }
             Row(modifier = Modifier.padding(start = 10.dp)) {
                 Text(
                     modifier = Modifier
@@ -146,7 +141,7 @@ fun CatalogItem(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(11.dp),
-                onClick = onClickAddItem
+                onClick = { onClickAddItem(item) }
             ) {
                 Image(
                     painter = painterResource(id = Icons.Basket.image),

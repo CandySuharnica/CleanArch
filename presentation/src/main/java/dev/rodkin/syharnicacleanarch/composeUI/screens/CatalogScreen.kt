@@ -5,39 +5,35 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import dev.rodkin.domain.useCases.useCasesImpl.SortMode
+import dev.rodkin.domain.entities.BasketItem
+import dev.rodkin.domain.useCases.useCasesImpl.OnBasketMode
 import dev.rodkin.syharnicacleanarch.composeUI.common.SearchBar
 import dev.rodkin.syharnicacleanarch.composeUI.common.SortBar
 import dev.rodkin.syharnicacleanarch.composeUI.items.CatalogItem
+import dev.rodkin.syharnicacleanarch.composeUI.navigation.NavGraph
+import dev.rodkin.syharnicacleanarch.presenters.BasketViewModel
 import dev.rodkin.syharnicacleanarch.presenters.CatalogViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 
 
 @Composable
-fun CatalogScreen(viewModel: CatalogViewModel, navController: NavController) {
+fun CatalogScreen(
+    catalogViewModel: CatalogViewModel,
+    basketViewModel: BasketViewModel,
+    navController: NavController
+) {
 
-    LaunchedEffect(key1 = Unit) {
-        viewModel.getCatalogList()
-    }
-    /*val sortFlow = viewModel.sortFlow.collectAsState().value
-    val initialList = listOf("Все", "Любимое")
-
-    val finalListTypes = initialList + sortTypes
-    val searchFlow = viewModel.searchFlow.collectAsState().value*/
-    val sortTypes = viewModel.catalogTypes.collectAsState(initial = listOf()).value
-    val catalogItems = viewModel.catalogList
-        .collectAsState(initial = listOf()).value
-
-    val flowSearch = viewModel.flowSearch.collectAsState()
-    val flowType = viewModel.flowType.collectAsState()
-    val flowSearchMode = viewModel.flowSearchMode.collectAsState()
+    val sortTypes = catalogViewModel.catalogTypes.collectAsState().value
+    val catalogItems = catalogViewModel.catalogList.collectAsState().value
+    val basketItems = basketViewModel.basketList.collectAsState().value
+    val flowSearch = catalogViewModel.flowSearch.collectAsState()
+    val flowType = catalogViewModel.flowType.collectAsState()
+    val flowSearchMode = catalogViewModel.flowSearchMode.collectAsState()
     /*val listOfLikes =
         viewModel.listOfLikes.collectAsState(initial = listOf()).value.firstNotNullOfOrNull { it }?.likes
             ?: emptyList()*/
@@ -45,15 +41,15 @@ fun CatalogScreen(viewModel: CatalogViewModel, navController: NavController) {
         modifier = Modifier.fillMaxSize()
     ) {
         SearchBar(text = flowSearch.value) {
-            viewModel.flowSearch.value = it
-            viewModel.sortCatalogList()
+            catalogViewModel.flowSearch.value = it
+            catalogViewModel.sortCatalogList()
         }
         SortBar(
             content = sortTypes,
             sortMode = flowType.value,
         ) {
-            viewModel.flowType.value = it
-            viewModel.sortCatalogList()
+            catalogViewModel.flowType.value = it
+            catalogViewModel.sortCatalogList()
         }
         Box() {
             LazyVerticalGrid(
@@ -65,17 +61,19 @@ fun CatalogScreen(viewModel: CatalogViewModel, navController: NavController) {
                     itemContent = { index ->
                         CatalogItem(
                             item = catalogItems[index],
-                            count = 0/*viewModel.getItemCountInBasket(it.id)
-                                .collectAsState(initial = 0).value*/,
+                            count = basketItems
+                                .find { it.id == catalogItems[index].id }
+                                .let { item ->
+                                    item?.count ?: 0
+                                },
                             liked = false/*listOfLikes.contains(it.id)*/,
-                            onClickAddItem = {
-                                /*viewModel.addItemIntoBasket(
-                                    it.id,
-                                    OnBasketMode.ADD
-                                )*/
+                            onClickAddItem = { catalogItem ->
+                                basketViewModel.updateBasket(item = catalogItem, OnBasketMode.ADD)
                             },
                             onClickItem = {
-                                //navController.navigate("${NavGraph.DetailScreen.route}/itemId=${it.id}")
+                                navController.navigate(
+                                    route = "${NavGraph.DetailScreen.route}/itemId=${catalogItems[index].id}"
+                                )
                             },
                             onClickLike = {
                                 //viewModel.like(it.id)

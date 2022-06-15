@@ -28,8 +28,8 @@ import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
 @Composable
 fun BasketItem(
     item: BasketItem,
-    onClickAdd: () -> Unit,
-    onClickRemove: () -> Unit
+    onClickAdd: (BasketItem) -> Unit,
+    onClickRemove: (BasketItem) -> Unit
 ) {
     Column {
         Row(
@@ -47,7 +47,7 @@ fun BasketItem(
                             10f
                         )
                     },
-                model = item.imgUrl[0],
+                model = item.imgUrl,
                 loading = {
                     Box(
                         contentAlignment = Alignment.Center,
@@ -89,7 +89,7 @@ fun BasketItem(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(
-                        onClick = onClickRemove
+                        onClick = { onClickRemove(item) }
                     ) {
                         Image(
                             /* modifier = Modifier.pointerInput(Unit) {
@@ -109,7 +109,7 @@ fun BasketItem(
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.primary
                     )
-                    IconButton(onClick = onClickAdd) {
+                    IconButton(onClick = { onClickAdd(item) }) {
                         Image(
                             painter = painterResource(id = Icons.BigPlus.image),
                             contentDescription = stringResource(id = Icons.BigPlus.description)

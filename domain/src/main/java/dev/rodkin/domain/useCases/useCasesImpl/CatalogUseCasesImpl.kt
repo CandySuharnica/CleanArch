@@ -32,7 +32,7 @@ class CatalogUseCasesImpl @Inject constructor(
                     getCatalogTypes(data)
                 }
             }
-            is Response.Error<*> -> _exception.emit(response.exception.toString())
+            is Response.Error<*> -> _exception.emit(response.exception)
         }
     }
 
@@ -64,7 +64,7 @@ class CatalogUseCasesImpl @Inject constructor(
                 }
             }
 
-        _sortedCatalogList.value = sortedList
+        _sortedCatalogList.emit(sortedList)
     }
 
     companion object {
