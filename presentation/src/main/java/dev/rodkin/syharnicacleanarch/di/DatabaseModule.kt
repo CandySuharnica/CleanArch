@@ -11,17 +11,18 @@ import dev.rodkin.data.localDB.AppDatabase
 import dev.rodkin.data.localDB.BasketDao
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
 @Module
+@InstallIn(SingletonComponent::class)
 class DatabaseModule {
+
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
-            "AppDatabase"
-        ).fallbackToDestructiveMigration().build()
+            "AppDb"
+        ).build()
     }
 
     @Provides

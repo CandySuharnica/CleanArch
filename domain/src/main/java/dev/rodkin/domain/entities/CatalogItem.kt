@@ -32,4 +32,14 @@ data class CatalogItem(
     var fats: String = "",
     var protein: String = "",
     //var isLiked: Boolean = false
-)
+) {
+    fun mapToBasketItem(count: Int): BasketItem =
+        BasketItem(
+            id = id,
+            count = count,
+            imgUrl = imgUrl[0],
+            label = label,
+            priceSale = priceSale,
+            weight = weight
+        )
+}
