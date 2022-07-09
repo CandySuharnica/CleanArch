@@ -8,12 +8,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import dev.rodkin.syharnicacleanarch.composeUI.screens.BasketScreen
-import dev.rodkin.syharnicacleanarch.composeUI.screens.CatalogScreen
-import dev.rodkin.syharnicacleanarch.composeUI.screens.DetailScreen
+import dev.rodkin.syharnicacleanarch.composeUI.screens.*
 import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
-import dev.rodkin.syharnicacleanarch.presenters.BasketViewModel
-import dev.rodkin.syharnicacleanarch.presenters.CatalogViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.BasketViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.CatalogViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.LogInAndSignUpViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.ProfileViewModel
 
 @Composable
 fun NavigationGraph() {
@@ -48,13 +48,11 @@ fun NavigationGraph() {
                 if (user?.name != null) {
                     MakingAnOrderScreen(viewModel)
                 } else LogInAndSignUpScreen(viewModel)
-            }
-            composable(NavGraph.Profile.route) {
-                val profileViewModel = hiltViewModel<ProfileViewModel>()
-                if (user?.name != null) {
-                    Profile(viewModel = profileViewModel)
-                } else LogInAndSignUpScreen(viewModel)
             }*/
+            composable(NavGraph.Profile.route) {
+                val logInAndSignUpViewModel = hiltViewModel<LogInAndSignUpViewModel>()
+                LogInAndSignUpScreen(viewModel = logInAndSignUpViewModel)
+            }
             composable(
                 "${NavGraph.DetailScreen.route}/itemId={itemId}",
                 arguments = listOf(navArgument("itemId") { type = NavType.LongType })

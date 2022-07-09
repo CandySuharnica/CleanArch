@@ -15,8 +15,7 @@ class CatalogSourceImpl @Inject constructor(
 
     private val catalogApi = config.create(CatalogRemoteService::class.java)
 
-    override suspend fun getCatalogList(): Response<ListCatalogItems> {
-        return catalogApi.getCatalogList().awaitResponse()
-    }
+    override suspend fun getCatalogList(): Response<ListCatalogItems> =
+        catalogApi.getCatalogList().awaitResponse()
 
 }
