@@ -40,8 +40,8 @@
 
     <!-- catalog screen -->
     <string name="price">Price</string>
-    <string name="all">All</string>
-    <string name="favorite">Favorite</string>
+    <string name="all">Все</string>
+    <string name="favorite">Популярные</string>
 
     <!-- basket screen -->
     <string name="choose">Choose</string>
@@ -54,6 +54,7 @@
 
     <!-- LogIn or SignUp screen -->
     <string name="syharnica">Syharnica</string>
+    <string name="log_out">Log Out</string>
     <string name="login">Login</string>
     <string name="log_in">lOG IN</string>
     <string name="signup">Sign Up</string>

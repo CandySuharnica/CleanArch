@@ -4,10 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import dev.rodkin.domain.useCases.BasketUseCase
-import dev.rodkin.domain.useCases.CatalogUseCases
-import dev.rodkin.domain.useCases.useCasesImpl.BasketUseCaseImpl
-import dev.rodkin.domain.useCases.useCasesImpl.CatalogUseCasesImpl
+import dev.rodkin.domain.useCases.*
+import dev.rodkin.domain.useCases.useCasesImpl.*
 
 
 @Module
@@ -15,8 +13,17 @@ import dev.rodkin.domain.useCases.useCasesImpl.CatalogUseCasesImpl
 interface UseCasesModule {
 
     @Binds
-    fun bindCatalogUseCase(catalogRepositoryImpl: CatalogUseCasesImpl): CatalogUseCases
+    fun bindGetBasketItemFlowUseCaseImpl(getBasketItemFlowUseCaseImpl: GetBasketItemFlowUseCaseImpl): GetBasketItemFlowUseCase
 
     @Binds
-    fun bindBasketUseCase(basketUseCaseImpl: BasketUseCaseImpl): BasketUseCase
+    fun bindGetCatalogItemsListUseCaseImpl(getCatalogItemsListUseCaseImpl: GetCatalogItemsListUseCaseImpl): GetCatalogItemsListUseCase
+
+    @Binds
+    fun bindGetCatalogItemTypeUseCaseImpl(getCatalogItemTypeUseCaseImpl: GetCatalogItemTypeUseCaseImpl): GetCatalogItemTypeUseCase
+
+    @Binds
+    fun bindSortCatalogItemTypeUseCaseImpl(sortCatalogItemTypeUseCaseImpl: SortCatalogItemTypeUseCaseImpl): SortCatalogItemTypeUseCase
+
+    @Binds
+    fun bindUpdateBasketItemsUseCaseImpl(updateBasketItemsUseCaseImpl: UpdateBasketItemsUseCaseImpl): UpdateBasketItemsUseCase
 }

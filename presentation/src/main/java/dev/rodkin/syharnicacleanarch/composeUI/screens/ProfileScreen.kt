@@ -1,15 +1,10 @@
-/*
 package dev.rodkin.syharnicacleanarch.composeUI.screens
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -25,16 +20,13 @@ import androidx.compose.ui.unit.sp
 import dev.rodkin.syharnicacleanarch.R
 import dev.rodkin.syharnicacleanarch.composeUI.common.PopupList
 import dev.rodkin.syharnicacleanarch.composeUI.common.RedButton
-import dev.rodkin.syharnicacleanarch.composeUI.items.CatalogItem
 import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
-import dev.rodkin.syharnicacleanarch.presenters.ProfileViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.ProfileViewModel
 
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-
 fun Profile(viewModel: ProfileViewModel) {
-    val orderItems = viewModel.getBasket.collectAsState(initial = listOf()).value
+    /*val orderItems = viewModel.getBasket.collectAsState(initial = listOf()).value
     val orderItemsNames: MutableList<String> = mutableListOf()
     val listOfLikes =
         viewModel.listOfLikes.collectAsState(initial = listOf()).value.firstNotNullOfOrNull { it }?.likes
@@ -44,7 +36,7 @@ fun Profile(viewModel: ProfileViewModel) {
             ?: ""
     for (item in orderItems) {
         orderItemsNames.add(item.label)
-    }
+    }*/
 
     Column(
         Modifier
@@ -52,25 +44,8 @@ fun Profile(viewModel: ProfileViewModel) {
             .fillMaxSize()
     ) {
         TopBar()
-        TopCard(user)
+        TopCard()
         Spacer(modifier = Modifier.height(20.dp))
-        PopupList(
-            label = stringResource(id = R.string.my_orders_profile),
-            content = {
-                LazyVerticalGrid(
-                    cells = GridCells.Fixed(2)
-                ) {
-                    items(
-                        items = listOfLikes,
-                        itemContent = {
-                            CatalogItem(
-                                item = viewModel.getItemFromId(it)
-                            )
-                        }
-                    )
-                }
-            }
-        )
         Spacer(modifier = Modifier.height(2.dp))
         PopupList(
             label = stringResource(id = R.string.our_bakeries_profile),
@@ -90,8 +65,8 @@ fun Profile(viewModel: ProfileViewModel) {
         RedButton(
             text = "Выйти",
             onClickButton = {
-                if (user != "")
-                    viewModel.removeUser(user)
+                /* if (user != "")
+                     viewModel.removeUser(user)*/
 
             }
         )
@@ -103,22 +78,22 @@ fun Profile(viewModel: ProfileViewModel) {
 @Composable
 fun TopBar() {
     Box(modifier = Modifier.fillMaxWidth()) {
-        IconButton(
-            modifier = Modifier.align(Alignment.CenterStart),
-            onClick = { }) {
-            Image(
-                painter = painterResource(id = Icons.ArrowBack.image),
-                contentDescription = stringResource(id = Icons.ArrowBack.description.resourceId),
-
-                )
-        }
-
         Text(
             modifier = Modifier.align(Alignment.Center),
             text = stringResource(id = R.string.profile_title),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
         )
+        IconButton(
+            modifier = Modifier.align(Alignment.CenterEnd),
+            onClick = {
+
+            }) {
+            Image(
+                painter = painterResource(id = Icons.LogOut.image),
+                contentDescription = stringResource(id = Icons.LogOut.description),
+            )
+        }
     }
     Divider(
         thickness = 2.dp,
@@ -183,4 +158,4 @@ fun TopCard(user: String = "") {
         }
     }
 }
-*/
+

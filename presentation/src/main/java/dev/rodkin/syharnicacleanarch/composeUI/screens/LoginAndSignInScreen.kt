@@ -1,4 +1,3 @@
-/*
 package dev.rodkin.syharnicacleanarch.composeUI.screens
 
 import androidx.compose.foundation.BorderStroke
@@ -7,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.ExposedDropdownMenuDefaults.outlinedTextFieldColors
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
@@ -18,13 +18,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import by.candy.suharnica.MR
-import by.candy.suharnica.android.MainViewModel
-import by.candy.suharnica.android.utils.Icons
+import dev.rodkin.syharnicacleanarch.R
+import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
+import dev.rodkin.syharnicacleanarch.viewModels.LogInAndSignUpViewModel
 
 
 @Composable
-fun LogInAndSignUpScreen(viewModel: MainViewModel) {
+fun LogInAndSignUpScreen(viewModel: LogInAndSignUpViewModel) {
     val signUpState = remember { mutableStateOf(false) }
     Box(modifier = Modifier.fillMaxSize()) {
         Icon(
@@ -32,7 +32,7 @@ fun LogInAndSignUpScreen(viewModel: MainViewModel) {
                 .padding(40.dp)
                 .align(Alignment.TopCenter),
             painter = painterResource(id = Icons.Label.image),
-            contentDescription = stringResource(id = Icons.Label.description.resourceId)
+            contentDescription = stringResource(id = Icons.Label.description)
         )
         if (!signUpState.value)
             login(
@@ -57,7 +57,7 @@ fun LogInAndSignUpScreen(viewModel: MainViewModel) {
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun login(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Boolean>) {
+fun login(modifier: Modifier, viewModel: LogInAndSignUpViewModel, state: MutableState<Boolean>) {
     val userName = remember { mutableStateOf("") }
     val userPassword = remember { mutableStateOf("") }
     Box(modifier = modifier) {
@@ -65,16 +65,16 @@ fun login(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Bool
         Column(modifier = Modifier.align(Center)) {
             Text(
                 modifier = Modifier.padding(bottom = 8.dp),
-                text = stringResource(id = MR.strings.login.resourceId),
+                text = stringResource(id = R.string.login),
                 fontWeight = FontWeight.Bold
             )
 
             OutlinedTextField(
                 value = userName.value,
                 onValueChange = { userName.value = it },
-                label = { Text(text = stringResource(id = MR.strings.user_name.resourceId)) },
+                label = { Text(text = stringResource(id = R.string.user_name)) },
                 colors = outlinedTextFieldColors(
-                    focusedBorderColor = Colors.RedButton.color,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
                     unfocusedBorderColor = Color.Black,
                     focusedLabelColor = Color.Black
                 )
@@ -84,9 +84,9 @@ fun login(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Bool
                 modifier = Modifier.padding(top = 12.dp),
                 value = userPassword.value,
                 onValueChange = { userPassword.value = it },
-                label = { Text(text = stringResource(id = MR.strings.password.resourceId)) },
+                label = { Text(text = stringResource(id = R.string.password)) },
                 colors = outlinedTextFieldColors(
-                    focusedBorderColor = Colors.RedButton.color,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
                     unfocusedBorderColor = Color.Black,
                     focusedLabelColor = Color.Black
                 )
@@ -98,15 +98,15 @@ fun login(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Bool
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .padding(start = 12.dp, end = 12.dp, bottom = 100.dp),
-            backgroundColor = Colors.RedButton.color,
+            backgroundColor = MaterialTheme.colorScheme.primary,
             border = BorderStroke(2.dp, color = Color.Black),
             shape = RoundedCornerShape(8.dp),
-            onClick = { viewModel.login(userName.value, userPassword.value) }
+            onClick = { /*viewModel.login(userName.value, userPassword.value)*/ }
         ) {
             Text(
                 modifier = Modifier
                     .padding(8.dp),
-                text = stringResource(id = MR.strings.log_in.resourceId),
+                text = stringResource(id = R.string.log_in),
                 textAlign = TextAlign.Center,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Medium
@@ -117,7 +117,7 @@ fun login(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Bool
                 .padding(bottom = 70.dp)
                 .align(Alignment.BottomCenter)
                 .clickable { state.value = true },
-            text = stringResource(id = MR.strings.new_to_syharnica.resourceId),
+            text = stringResource(id = R.string.new_to_syharnica),
             fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp,
             textAlign = TextAlign.Center
@@ -128,7 +128,7 @@ fun login(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Bool
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun signUp(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Boolean>) {
+fun signUp(modifier: Modifier, viewModel: LogInAndSignUpViewModel, state: MutableState<Boolean>) {
     val userName = remember { mutableStateOf("") }
     val userPassword = remember { mutableStateOf("") }
     Box(modifier = modifier) {
@@ -136,16 +136,16 @@ fun signUp(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Boo
         Column(modifier = Modifier.align(Center)) {
             Text(
                 modifier = Modifier.padding(bottom = 8.dp),
-                text = stringResource(id = MR.strings.signup.resourceId),
+                text = stringResource(id = R.string.signup),
                 fontWeight = FontWeight.Bold
             )
 
             OutlinedTextField(
                 value = userName.value,
                 onValueChange = { userName.value = it },
-                label = { Text(text = stringResource(id = MR.strings.user_name.resourceId)) },
+                label = { Text(text = stringResource(id = R.string.user_name)) },
                 colors = outlinedTextFieldColors(
-                    focusedBorderColor = Colors.RedButton.color,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
                     unfocusedBorderColor = Color.Black,
                     focusedLabelColor = Color.Black
                 )
@@ -155,9 +155,9 @@ fun signUp(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Boo
                 modifier = Modifier.padding(top = 12.dp),
                 value = userPassword.value,
                 onValueChange = { userPassword.value = it },
-                label = { Text(text = stringResource(id = MR.strings.password.resourceId)) },
+                label = { Text(text = stringResource(id = R.string.password)) },
                 colors = outlinedTextFieldColors(
-                    focusedBorderColor = Colors.RedButton.color,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
                     unfocusedBorderColor = Color.Black,
                     focusedLabelColor = Color.Black
                 )
@@ -169,15 +169,15 @@ fun signUp(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Boo
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .padding(start = 12.dp, end = 12.dp, bottom = 100.dp),
-            backgroundColor = Colors.RedButton.color,
+            backgroundColor = MaterialTheme.colorScheme.primary,
             border = BorderStroke(2.dp, color = Color.Black),
             shape = RoundedCornerShape(8.dp),
-            onClick = { viewModel.register(userName.value, userPassword.value) }
+            onClick = { /*viewModel.register(userName.value, userPassword.value)*/ }
         ) {
             Text(
                 modifier = Modifier
                     .padding(8.dp),
-                text = stringResource(id = MR.strings.sign_up.resourceId),
+                text = stringResource(id = R.string.sign_up),
                 textAlign = TextAlign.Center,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Medium
@@ -188,11 +188,10 @@ fun signUp(modifier: Modifier, viewModel: MainViewModel, state: MutableState<Boo
                 .padding(bottom = 70.dp)
                 .align(Alignment.BottomCenter)
                 .clickable { state.value = false },
-            text = stringResource(id = MR.strings.already_in_syharnica.resourceId),
+            text = stringResource(id = R.string.already_in_syharnica),
             fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp,
             textAlign = TextAlign.Center
         )
     }
 }
-*/
