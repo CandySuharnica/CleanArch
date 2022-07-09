@@ -84,5 +84,10 @@ sealed class Icons(
         R.drawable.ic_lable
     )
 
+    object LogOut : Icons(
+        R.string.log_out,
+        R.drawable.ic_logout
+    )
+
 }
 

@@ -19,11 +19,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import dev.rodkin.syharnicacleanarch.composeUI.common.RedButton
 import coil.compose.SubcomposeAsyncImage
-import dev.rodkin.domain.useCases.useCasesImpl.OnBasketMode
+import dev.rodkin.domain.useCases.OnBasketMode
 import dev.rodkin.syharnicacleanarch.R
 import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
-import dev.rodkin.syharnicacleanarch.presenters.BasketViewModel
-import dev.rodkin.syharnicacleanarch.presenters.CatalogViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.BasketViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.CatalogViewModel
 
 @Composable
 fun DetailScreen(

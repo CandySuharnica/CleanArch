@@ -11,14 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import dev.rodkin.domain.entities.BasketItem
-import dev.rodkin.domain.useCases.useCasesImpl.OnBasketMode
+import dev.rodkin.domain.useCases.OnBasketMode
 import dev.rodkin.syharnicacleanarch.composeUI.common.SearchBar
 import dev.rodkin.syharnicacleanarch.composeUI.common.SortBar
 import dev.rodkin.syharnicacleanarch.composeUI.items.CatalogItem
 import dev.rodkin.syharnicacleanarch.composeUI.navigation.NavGraph
-import dev.rodkin.syharnicacleanarch.presenters.BasketViewModel
-import dev.rodkin.syharnicacleanarch.presenters.CatalogViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.BasketViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.CatalogViewModel
 
 
 @Composable
@@ -46,7 +45,7 @@ fun CatalogScreen(
         }
         SortBar(
             content = sortTypes,
-            sortMode = flowType.value,
+            sortMode = flowType.value ?: "",
         ) {
             catalogViewModel.flowType.value = it
             catalogViewModel.sortCatalogList()

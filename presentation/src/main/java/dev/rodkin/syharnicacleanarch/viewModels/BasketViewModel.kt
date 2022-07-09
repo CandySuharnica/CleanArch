@@ -1,19 +1,24 @@
-package dev.rodkin.syharnicacleanarch.presenters
+package dev.rodkin.syharnicacleanarch.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.rodkin.domain.entities.BasketItem
 import dev.rodkin.domain.entities.CatalogItem
-import dev.rodkin.domain.useCases.BasketUseCase
-import dev.rodkin.domain.useCases.useCasesImpl.OnBasketMode
-import kotlinx.coroutines.flow.*
+import dev.rodkin.domain.useCases.GetBasketItemFlowUseCase
+import dev.rodkin.domain.useCases.OnBasketMode
+import dev.rodkin.domain.useCases.UpdateBasketItemsUseCase
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class BasketViewModel @Inject constructor(
-    private val basketUseCase: BasketUseCase
+    private val basketFlow: GetBasketItemFlowUseCase,
+    private val updateBasketUseCase: UpdateBasketItemsUseCase
 ) : ViewModel() {
 
     private val _basketList = MutableStateFlow(emptyList<BasketItem>())
@@ -23,28 +28,21 @@ class BasketViewModel @Inject constructor(
     val exception: StateFlow<String> = _exception
 
     init {
-        viewModelScope.apply {
-            launch {
-                //init basket list
-                basketUseCase.getBasketList()
-            }
-            launch {
-                basketUseCase.basketList.collect { basketList ->
-                    _basketList.value = basketList
-                }
+        viewModelScope.launch {
+            basketFlow.getBasketFlow().collect { basketList ->
+                _basketList.value = basketList
             }
         }
     }
 
     fun updateBasket(item: CatalogItem, onBasketMode: OnBasketMode) {
         viewModelScope.launch {
-            basketUseCase.updateBasketItems(item, onBasketMode)
+            updateBasketUseCase.updateBasketItems(item, onBasketMode)
         }
     }
-
     fun updateBasket(item: BasketItem, onBasketMode: OnBasketMode) {
         viewModelScope.launch {
-            basketUseCase.updateBasketItems(item, onBasketMode)
+            updateBasketUseCase.updateBasketItems(item, onBasketMode)
         }
     }
 
