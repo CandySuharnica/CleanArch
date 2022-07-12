@@ -4,5 +4,9 @@ import dev.rodkin.domain.entities.CatalogItem
 import dev.rodkin.domain.utils.Response
 
 interface GetCatalogItemsListUseCase {
-   suspend fun getCatalogListResponse(): Response<List<CatalogItem>>
+    suspend fun getCatalogListResponse(): Response<List<CatalogItem>>
+}
+
+interface RegisterUserUseCase {
+    fun register(email: String, Password: String): Any
 }

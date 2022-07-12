@@ -16,20 +16,19 @@ import dev.rodkin.syharnicacleanarch.composeUI.common.SearchBar
 import dev.rodkin.syharnicacleanarch.composeUI.common.SortBar
 import dev.rodkin.syharnicacleanarch.composeUI.items.CatalogItem
 import dev.rodkin.syharnicacleanarch.composeUI.navigation.NavGraph
-import dev.rodkin.syharnicacleanarch.viewModels.BasketViewModel
 import dev.rodkin.syharnicacleanarch.viewModels.CatalogViewModel
 
 
 @Composable
 fun CatalogScreen(
     catalogViewModel: CatalogViewModel,
-    basketViewModel: BasketViewModel,
-    navController: NavController
+    navController: NavController,
+    bottomPaddingValues: PaddingValues
 ) {
 
     val sortTypes = catalogViewModel.catalogTypes.collectAsState().value
     val catalogItems = catalogViewModel.catalogList.collectAsState().value
-    val basketItems = basketViewModel.basketList.collectAsState().value
+    val basketItems = catalogViewModel.basketList.collectAsState().value
     val flowSearch = catalogViewModel.flowSearch.collectAsState()
     val flowType = catalogViewModel.flowType.collectAsState()
     val flowSearchMode = catalogViewModel.flowSearchMode.collectAsState()
@@ -45,14 +44,14 @@ fun CatalogScreen(
         }
         SortBar(
             content = sortTypes,
-            sortMode = flowType.value ?: "",
+            sortMode = flowType.value,
         ) {
             catalogViewModel.flowType.value = it
             catalogViewModel.sortCatalogList()
         }
         Box() {
             LazyVerticalGrid(
-                modifier = Modifier.padding(bottom = 59.dp),
+                modifier = Modifier.padding(bottom = bottomPaddingValues.calculateBottomPadding()),
                 columns = GridCells.Fixed(2)
             ) {
                 items(
@@ -67,7 +66,7 @@ fun CatalogScreen(
                                 },
                             liked = false/*listOfLikes.contains(it.id)*/,
                             onClickAddItem = { catalogItem ->
-                                basketViewModel.updateBasket(item = catalogItem, OnBasketMode.ADD)
+                                catalogViewModel.updateBasket(item = catalogItem, OnBasketMode.ADD)
                             },
                             onClickItem = {
                                 navController.navigate(

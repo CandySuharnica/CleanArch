@@ -6,6 +6,7 @@ import dev.rodkin.domain.repositoryIntefaces.BasketRepository
 import dev.rodkin.domain.useCases.GetBasketItemFlowUseCase
 import dev.rodkin.domain.useCases.OnBasketMode
 import dev.rodkin.domain.useCases.UpdateBasketItemsUseCase
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.last
 import javax.inject.Inject
 
@@ -17,7 +18,8 @@ class UpdateBasketItemsUseCaseImpl @Inject constructor(
     private val basketItems = basketFlow.getBasketFlow()
 
     override suspend fun updateBasketItems(item: CatalogItem, onBasketMode: OnBasketMode) {
-        val existItem = basketItems.last().find { item.id == it.id }
+        val existItem = basketItems.first()
+            .find { item.id == it.id }
         when (onBasketMode) {
             OnBasketMode.ADD -> {
                 if (existItem != null) {
@@ -45,7 +47,8 @@ class UpdateBasketItemsUseCaseImpl @Inject constructor(
     }
 
     override suspend fun updateBasketItems(item: BasketItem, onBasketMode: OnBasketMode) {
-        val existItem = basketItems.last().find { item.id == it.id }
+        val existItem = basketItems.first()
+            .find { item.id == it.id }
         when (onBasketMode) {
             OnBasketMode.ADD -> {
                 if (existItem != null) {

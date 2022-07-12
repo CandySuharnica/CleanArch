@@ -11,8 +11,8 @@ class SortCatalogItemTypeUseCaseImpl @Inject constructor(
     favorite: InitialTypes.FAVORITE
 ) : SortCatalogItemTypeUseCase {
 
-    val all = all
-    val favorite = favorite
+    private val all = all
+    private val favorite = favorite
 
     override fun sortCatalogList(
         unsortedList: List<CatalogItem>,

@@ -1,6 +1,7 @@
 package dev.rodkin.syharnicacleanarch.di
 
-import com.squareup.moshi.Moshi
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,5 +44,10 @@ class NetworkModule {
     @Singleton
     @Named("IO")
     fun provideDispatcher() = Dispatchers.IO
+
+    @Provides
+    @Singleton
+    fun firebaseAuth() = Firebase.auth
+
 
 }

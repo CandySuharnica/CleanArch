@@ -35,11 +35,6 @@ class BasketViewModel @Inject constructor(
         }
     }
 
-    fun updateBasket(item: CatalogItem, onBasketMode: OnBasketMode) {
-        viewModelScope.launch {
-            updateBasketUseCase.updateBasketItems(item, onBasketMode)
-        }
-    }
     fun updateBasket(item: BasketItem, onBasketMode: OnBasketMode) {
         viewModelScope.launch {
             updateBasketUseCase.updateBasketItems(item, onBasketMode)
