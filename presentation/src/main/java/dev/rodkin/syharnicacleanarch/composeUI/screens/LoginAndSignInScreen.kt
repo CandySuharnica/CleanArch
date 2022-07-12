@@ -172,7 +172,7 @@ fun signUp(modifier: Modifier, viewModel: LogInAndSignUpViewModel, state: Mutabl
             backgroundColor = MaterialTheme.colorScheme.primary,
             border = BorderStroke(2.dp, color = Color.Black),
             shape = RoundedCornerShape(8.dp),
-            onClick = { /*viewModel.register(userName.value, userPassword.value)*/ }
+            onClick = { viewModel.register(userName.value, userPassword.value) }
         ) {
             Text(
                 modifier = Modifier

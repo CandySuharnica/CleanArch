@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,26 +18,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import dev.rodkin.syharnicacleanarch.composeUI.common.RedButton
 import coil.compose.SubcomposeAsyncImage
 import dev.rodkin.domain.useCases.OnBasketMode
 import dev.rodkin.syharnicacleanarch.R
+import dev.rodkin.syharnicacleanarch.composeUI.common.RedButton
 import dev.rodkin.syharnicacleanarch.composeUI.theme.Icons
-import dev.rodkin.syharnicacleanarch.viewModels.BasketViewModel
-import dev.rodkin.syharnicacleanarch.viewModels.CatalogViewModel
+import dev.rodkin.syharnicacleanarch.viewModels.DetailCatalogViewModel
 
 @Composable
 fun DetailScreen(
-    catalogViewModel: CatalogViewModel,
-    basketViewModel: BasketViewModel,
+    detailViewModel: DetailCatalogViewModel,
     navController: NavController,
     itemId: Long
 ) {
-    val item = catalogViewModel.getItemFromId(itemId)
-    val count = basketViewModel.getItemCountFromId(itemId).collectAsState(initial = 0).value
-    if (item == null) {
-
-    } else
+    LaunchedEffect(Unit) {
+        detailViewModel.getItemFromId(itemId)
+    }
+    val item = detailViewModel.catalogItem.collectAsState().value
+    val count = detailViewModel.getItemCountFromId(itemId).collectAsState(initial = 0).value
+    item?.let {
         Box(modifier = Modifier.fillMaxHeight()) {
             LazyColumn {
                 item() {
@@ -130,7 +130,6 @@ fun DetailScreen(
                                 )
                             )
                         }
-
                     }
                     Divider(
                         modifier = Modifier.padding(12.dp),
@@ -187,7 +186,7 @@ fun DetailScreen(
                         .padding(start = 12.dp, end = 12.dp, bottom = 70.dp)
                         .align(Alignment.BottomCenter),
                     text = stringResource(id = R.string.add_to_basket),
-                    onClickButton = { basketViewModel.updateBasket(item, OnBasketMode.ADD) },
+                    onClickButton = { detailViewModel.updateBasket(item, OnBasketMode.ADD) },
                     icon = Icons.BigPlus
                 )
             else
@@ -199,10 +198,16 @@ fun DetailScreen(
                     text = stringResource(id = R.string.add_to_basket),
                     count = count,
                     backgroundColor = Color.White,
-                    onClickIconAdd = { basketViewModel.updateBasket(item, OnBasketMode.ADD) },
-                    onClickIconRemove = { basketViewModel.updateBasket(item, OnBasketMode.REMOVE) }
+                    onClickIconAdd = { detailViewModel.updateBasket(item, OnBasketMode.ADD) },
+                    onClickIconRemove = {
+                        detailViewModel.updateBasket(
+                            item,
+                            OnBasketMode.REMOVE
+                        )
+                    }
                 )
         }
+    }
 }
 
 

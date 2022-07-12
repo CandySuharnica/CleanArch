@@ -26,4 +26,16 @@ interface UseCasesModule {
 
     @Binds
     fun bindUpdateBasketItemsUseCaseImpl(updateBasketItemsUseCaseImpl: UpdateBasketItemsUseCaseImpl): UpdateBasketItemsUseCase
+
+    @Binds
+    fun getCountBasketItemFlowUseCaseImpl(getCountBasketItemFlowUseCaseImpl: GetCountBasketItemFlowUseCaseImpl): GetCountBasketItemFlowUseCase
+
+    @Binds
+    fun GetCountAllBasketItemsFlowUseCaseImpl(getCountAllBasketItemsFlowUseCaseImpl: GetCountAllBasketItemsFlowUseCaseImpl): GetCountAllBasketItemsFlowUseCase
+
+    @Binds
+    fun getCatalogItemFromIdUseCaseImpl(updateBasketItemsUseCaseImpl: GetCatalogItemFromIdUseCaseImpl): GetCatalogItemFromIdUseCase
+
+    @Binds
+    fun registerUserUseCaseImpl(registerUserUseCaseImpl: RegisterUserUseCaseImpl): RegisterUserUseCase
 }

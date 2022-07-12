@@ -25,8 +25,8 @@ import dev.rodkin.syharnicacleanarch.viewModels.BasketViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun BasketScreen(viewModel: BasketViewModel, navController: NavController) {
-    val basketItems = viewModel.basketList
+fun BasketScreen(basketViewModel: BasketViewModel, navController: NavController) {
+    val basketItems = basketViewModel.basketList
         .collectAsState(initial = listOf()).value
     val totalPrice = basketItems.sumOf { it.priceSale * it.count }
     val totalWeight = basketItems.sumOf { it.weight * it.count }
@@ -74,10 +74,10 @@ fun BasketScreen(viewModel: BasketViewModel, navController: NavController) {
                             BasketItem(
                                 item = basketItems[index],
                                 onClickAdd = { basketItems ->
-                                    viewModel.updateBasket(basketItems, OnBasketMode.ADD)
+                                    basketViewModel.updateBasket(basketItems, OnBasketMode.ADD)
                                 },
                                 onClickRemove = { basketItems ->
-                                    viewModel.updateBasket(basketItems, OnBasketMode.REMOVE)
+                                    basketViewModel.updateBasket(basketItems, OnBasketMode.REMOVE)
                                 }
                             )
                         }
